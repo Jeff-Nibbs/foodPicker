@@ -1,22 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+
+const placesToEat = [
+  "Vitality Bowls",
+  "The Cheesecake Factory",
+  "Fire Wings",
+  "Blaze Pizza",
+  "Lazy Dog",
+  "Wing Stop",
+  "El Charro Taqueria",
+  "Bibis",
+];
 
 function App() {
+  const [food, setFood] = useState("");
+  const handleClick = () => {
+    let num = Math.floor(Math.random() * placesToEat.length);
+    setFood(placesToEat[num]);
+  };
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <h1>Where do you want to eat.</h1>
+        {food ? <h2>{food}</h2> : null}
+        <button className="btn" onClick={handleClick}>
+          What do you want
+        </button>
+        <button
+          className="btn"
+          onClick={() => {
+            setFood("");
+          }}
         >
-          Learn React
-        </a>
+          Clear
+        </button>
       </header>
     </div>
   );
